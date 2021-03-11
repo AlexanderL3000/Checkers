@@ -1,26 +1,54 @@
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Window {
-	Window(int width, int height, Main main){
-		JFrame.setDefaultLookAndFeelDecorated(true);
 
+	private JFrame frame = new JFrame();
+
+	Window(int width, int height, Main main){
+		Time t = new Time();
+		JFrame.setDefaultLookAndFeelDecorated(true);
 		
-		main.setPreferredSize(new Dimension(width, height));
-		main.setMaximumSize(new Dimension(width, height));
-		main.setMinimumSize(new Dimension(width, height));
+		JPanel timePanel = new JPanel();
+		JPanel blankPanel = new JPanel();
+		List<JPanel> panels = new ArrayList<JPanel>();
 		
-		JFrame frame = new JFrame();
-		frame.add(main);
+	
+		
+		frame.setLayout(new GridLayout(3,4));
+		timePanel.setBackground(Color.yellow);
+		frame.add(timePanel);
+		for(int i = 0; i <9; i++) {
+			panels.add(new JPanel());
+			
+		}
+		for(int i = 0; i <9; i++) {
+			
+			
+			panels.get(i).setBackground(new Color((int)(Math.random() * 0x1000000)));
+			frame.add(panels.get(i));
+			
+			
+		}
+		//timePanel.setLayout(new GridLayout(2,1));
+	
+		timePanel.add(main);
+		timePanel.add(t.getTime());
+		t.start();
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
-		main.start();
 		
 	}
-	
+
 }
