@@ -1,27 +1,20 @@
 import java.awt.Canvas;
 
-public class Main extends Canvas implements Runnable{
+public class Main extends Canvas{
 	
 	
 	private boolean running = false;
 	private Thread thread;
-	
+	private int seconds = 0;
 	
 	public static void main(String[] args) {
-		new Window(1000,1000, new Main());
+		//new Time();
+		new Window(100,100,new Main());
 	}
 	
-	public synchronized void start() {
-		if(running) return;
-		
-		running = true;
-		thread = new Thread(this);
-		thread.start();
-	}
-	public void run() {
-		System.out.println("Test");
-		
-	}
 	
 
+	
+
+	
 }
